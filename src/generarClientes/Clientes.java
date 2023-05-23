@@ -13,7 +13,7 @@ public class Clientes {
     //leer hombres y mujeres generando 3000 clientes pasarlo a csv y meterlo en la tabla clientes
 
     public static void crearClientes() {
-
+        //cada vez que haya una transaccion formatear la fecha
         Properties properties = new Properties();
         LocalDate fechaMin = LocalDate.now().minusYears(100);
         LocalDate fechaMax = LocalDate.now().minusYears(6);
@@ -46,7 +46,7 @@ public class Clientes {
                         fileWriter.write(list[1].get(R.nextInt(list[1].size()))+",");//hombre
                     }
 
-                    fileWriter.write(list[2].get(R.nextInt(list[2].size()))+",");//apellido
+                    fileWriter.write(list[2].get(R.nextInt(list[2].size()))+" "+list[2].get(R.nextInt(list[2].size()))+",");//apellido
 
                     LocalDate cumple = fechaMin.plusDays(R.nextInt((int) ChronoUnit.DAYS.between(fechaMin, fechaMax)));//esto devuelve una fecha aleatoria
                     String fomatCumple=cumple.format(dateTimeFormatter);//formatear la fecha a string
@@ -57,7 +57,7 @@ public class Clientes {
                     fileWriter.write(genero+",");//genero
 
                     int numDNI=R.nextInt(99999999);
-                    fileWriter.write(generarDNI(numDNI)+"\n");//dni
+                    fileWriter.write(numDNI+generarDNI(numDNI)+"\n");//dni
                 }
 
             }catch (IOException e){
