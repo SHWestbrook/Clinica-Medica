@@ -1,4 +1,6 @@
-package generarClientes;
+package generar;
+
+import utilidades.utilities;
 
 import java.io.*;
 import java.time.LocalDate;
@@ -7,6 +9,8 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Properties;
 import java.util.Random;
+
+import static utilidades.utilities.generarDNI;
 
 public class Clientes {
     private static final Random R = new Random();
@@ -29,10 +33,10 @@ public class Clientes {
             ArrayList[] list=new ArrayList[3];
             for(int i=0;i< list.length;i++){
                 list[i]=new ArrayList<String>();
-                leerArchivo(archivos[i], list[i]);
+                utilities.leerArchivo(archivos[i], list[i]);
             }
 
-            try(FileWriter fileWriter = new FileWriter("Clientes.txt")){
+            try(FileWriter fileWriter = new FileWriter("src/BBDD/ficheros/Clientes.txt")){
 
                 for(int i=0;i<3000;i++){
                     String genero;
@@ -59,7 +63,6 @@ public class Clientes {
                     int numDNI=R.nextInt(99999999);
                     fileWriter.write(numDNI+generarDNI(numDNI)+"\n");//dni
                 }
-
             }catch (IOException e){
                 e.printStackTrace();
             }
@@ -68,24 +71,6 @@ public class Clientes {
             e.printStackTrace();
         }
         System.out.println("se ha generado con exito");
-    }
-    protected static void leerArchivo(String ruta, ArrayList<String> list){
-
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(ruta))){
-            String line;
-
-            while((line = bufferedReader.readLine()) != null){
-                list.add(line);
-            }
-
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-    }
-    //crear un dni
-    protected static String generarDNI(int num){
-        String letras = "TRWAGMYFPDXBNJZSQVHLCKE";
-        return letras.substring(num % 23, num % 23 + 1);
     }
 
 }

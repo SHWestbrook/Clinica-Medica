@@ -9,7 +9,7 @@ public class dbConnection {
 
     private static final String url = "jdbc:sqlserver://localhost:1433;TrustServerCertificate=True;";
     private static final String username = "sa";
-    private static final String passwd = "password";
+    private static final String passwd = "12345Ab##";
 
     private static Connection connection;
 
