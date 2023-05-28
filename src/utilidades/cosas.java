@@ -4,6 +4,12 @@ import java.io.*;
 
 public class cosas {//buscar un archivo
 
+    //para los transact
+    //connection.setAutoCommit(false);
+    //operaciones
+    //connection.commit();
+    //si sale mal (meter en try catch) connection.rollback();
+    
     public static void hola() {
         File startDirectory = new File("/ruta/a/tu/directorio"); // Reemplaza esto con tu ruta de directorio
         FileFilter filter = new FileFilter() {
