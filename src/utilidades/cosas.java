@@ -9,7 +9,8 @@ public class cosas {//buscar un archivo
     //operaciones
     //connection.commit();
     //si sale mal (meter en try catch) connection.rollback();
-    
+
+    //recorrer directorios y mostrar archivos .java
     public static void hola() {
         File startDirectory = new File("/ruta/a/tu/directorio"); // Reemplaza esto con tu ruta de directorio
         FileFilter filter = new FileFilter() {
@@ -68,6 +69,7 @@ public class cosas {//buscar un archivo
         }
     }
     public static void leer2() {//buffered reader
+        //no hace falta cerrar el file reader cuando esta dentro de un try catch
         File file = new File("/ruta/al/archivo.txt"); // Reemplaza esto con la ruta a tu archivo
 
         try (FileReader fileReader = new FileReader(file);
