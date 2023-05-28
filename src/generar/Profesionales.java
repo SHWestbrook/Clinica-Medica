@@ -41,7 +41,7 @@ public class Profesionales {
 
             try(FileWriter fileWriter = new FileWriter("src/BBDD/ficheros/Profesionales.txt")){
 
-                for(int i=0;i<3000;i++){
+                for(int i=0;i<5;i++){
                     double numeroAleatorio= Math.random();
                     if (numeroAleatorio>0.45){
 
@@ -57,7 +57,7 @@ public class Profesionales {
 
                     int numDNI=R.nextInt(99999999);
                     fileWriter.write(numDNI+generarDNI(numDNI)+",");//dni
-                    int comision=R.nextInt(20);
+                    int comision=R.nextInt(20-5)+5;
                     fileWriter.write(comision+"\n");//comision
                 }
             }catch (IOException e){

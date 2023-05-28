@@ -1,6 +1,6 @@
 package modelo;
 
-import java.time.LocalDate;
+
 import java.util.List;
 
 public class profesionales {
@@ -18,7 +18,7 @@ public class profesionales {
 
     //constructor
 
-
+//hacerlo sin las relaciones
     public profesionales(int id, String nombre, String apellidos, String dni, String numeroTelef, int comision, List<liquidaciones> liquidacionesList) {
         this.id = id;
         this.nombre = nombre;
