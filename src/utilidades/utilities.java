@@ -26,4 +26,5 @@ public class utilities {
         String letras = "TRWAGMYFPDXBNJZSQVHLCKE";
         return letras.substring(num % 23, num % 23 + 1);
     }
+
 }

@@ -1,0 +1,5 @@
+Efectivo
+Tpv banco
+Transferencia banco
+financiacion
+cobro adelantado

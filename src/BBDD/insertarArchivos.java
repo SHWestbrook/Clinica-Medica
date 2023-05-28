@@ -10,15 +10,17 @@ import java.util.Properties;
 
 public class insertarArchivos {
 
+    private static Connection conn = dbConnection.getConnection();
+
     public static void insertarTratamientos(){
 
         Properties properties = new Properties();
         try(FileInputStream fileInputStream=new FileInputStream("src/hola.properties")){
 
             properties.load(new FileInputStream("src/hola.properties"));
-            PreparedStatement ps= dbConnection.getConnection().prepareStatement("insert into tratamientos  (claveCorta,nombre,precio,idFamilia)values (?,?,?,?)");
-            PreparedStatement ps1= dbConnection.getConnection().prepareStatement("insert into familias (NombreFam) values (?)");
-            PreparedStatement ps2= dbConnection.getConnection().prepareStatement("select id from familias where NombreFam=?");
+            PreparedStatement ps= conn.prepareStatement("insert into tratamientos  (claveCorta,nombre,precio,idFamilia)values (?,?,?,?)");
+            PreparedStatement ps1= conn.prepareStatement("insert into familias (NombreFam) values (?)");
+            PreparedStatement ps2= conn.prepareStatement("select id from familias where NombreFam=?");
             BufferedReader file= new BufferedReader(new FileReader((String) properties.get("tratamientos")));
 
             String a = file.readLine();
@@ -63,7 +65,6 @@ public class insertarArchivos {
         try(FileInputStream fileInputStream=new FileInputStream("src/hola.properties")){
 
             properties.load(new FileInputStream("src/hola.properties"));
-            Connection conn = dbConnection.getConnection();
             PreparedStatement ps= conn.prepareStatement("insert into pacientes (nombre,apellidos, fechaNacimiento,numeroTelef,genero,dni) values (?,?,?,?,?,?)");
             BufferedReader file= new BufferedReader(new FileReader((String) properties.get("clientes")));
 
@@ -98,7 +99,7 @@ public class insertarArchivos {
         try(FileInputStream fileInputStream=new FileInputStream("src/hola.properties")){
 
             properties.load(new FileInputStream("src/hola.properties"));
-            PreparedStatement ps= dbConnection.getConnection().prepareStatement("insert into dbo.profesionales (nombre, apellidos,dni,telefono,comision) values (?,?,?,?,?)");
+            PreparedStatement ps= conn.prepareStatement("insert into dbo.profesionales (nombre, apellidos,dni,telefono,comision) values (?,?,?,?,?)");
             BufferedReader file= new BufferedReader(new FileReader((String) properties.get("profesionales")));
 
             String a = file.readLine();
@@ -120,6 +121,54 @@ public class insertarArchivos {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void insertarLiquidaciones(){
+
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        try{
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery("select * from profesionales");
+            PreparedStatement ps = conn.prepareStatement("insert into dbo.liquidaciones (fecha, idProfesional, comision) values(?,?,?)");
+
+            while(rs.next()){
+                int idProfesional = rs.getInt("id");
+                int comision = rs.getInt("comision");
+                LocalDate hoy = LocalDate.now();
+                String formateo = hoy.format(dateTimeFormatter);
+
+                ps.setString(1,formateo);
+                ps.setInt(2,idProfesional);
+                ps.setInt(3,comision);
+                ps.executeUpdate();
+            }
+
+
+            System.out.println("Se ha insertado profesionales con exito");
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void insertarFcobros(){
+        Properties properties = new Properties();
+
+        try(FileInputStream fileInputStream = new FileInputStream("src/hola.properties")){
+
+            properties.load(new FileInputStream("src/hola.properties"));
+            BufferedReader file= new BufferedReader(new FileReader((String) properties.get("FCobros")));
+            //PreparedStatement ps = conn.prepareStatement("");
+
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void insertarGCobros(){
+
     }
 
 }
