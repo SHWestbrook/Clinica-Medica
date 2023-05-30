@@ -145,7 +145,7 @@ public class insertarArchivos {
             }
 
 
-            System.out.println("Se ha insertado profesionales con exito");
+            System.out.println("Se ha insertado liquidaciones con exito");
         }catch(SQLException e){
             e.printStackTrace();
         }
@@ -158,17 +158,58 @@ public class insertarArchivos {
 
             properties.load(new FileInputStream("src/hola.properties"));
             BufferedReader file= new BufferedReader(new FileReader((String) properties.get("FCobros")));
-            //PreparedStatement ps = conn.prepareStatement("");
+            PreparedStatement ps = conn.prepareStatement("insert into dbo.formasCobro (idGrupoCaja, nombre) values(?,?)");
 
-
+            String a = file.readLine();
+            while(a!=null){
+                String[] remplazar=a.split(",");
+                ps.setInt(1, Integer.parseInt(remplazar[0]));
+                ps.setString(2,remplazar[1]);
+                ps.executeUpdate();
+                a = file.readLine();
+            }
+            System.out.println("Se ha insertado Formas de cobro con exito");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
+
     public static void insertarGCobros(){
+
+        Properties properties = new Properties();
+
+        try(FileInputStream fileInputStream = new FileInputStream("src/hola.properties")){
+
+            properties.load(new FileInputStream("src/hola.properties"));
+            BufferedReader file= new BufferedReader(new FileReader((String) properties.get("GCobros")));
+            PreparedStatement ps = conn.prepareStatement("insert into dbo.grupocaja (nombre) values(?)");
+
+            String a = file.readLine();
+            while(a!=null){
+                String[] remplazar=a.split(",");
+                ps.setString(1,remplazar[0]);
+                ps.executeUpdate();
+                a = file.readLine();
+            }
+
+            System.out.println("Se han insertado los grupos de cobro con exito");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void insertarCobros(){
 
     }
 
+    public static void insertarServicios(){
+
+    }
 }

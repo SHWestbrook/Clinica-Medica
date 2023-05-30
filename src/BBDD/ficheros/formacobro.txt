@@ -1,5 +1,5 @@
-Efectivo
-Tpv banco
-Transferencia banco
-financiacion
-cobro adelantado
+1,Efectivo
+2,Tpv banco
+2,Transferencia banco
+2,financiacion
+1,cobro adelantado

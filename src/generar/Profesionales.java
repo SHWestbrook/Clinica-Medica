@@ -40,8 +40,8 @@ public class Profesionales {
             }
 
             try(FileWriter fileWriter = new FileWriter("src/BBDD/ficheros/Profesionales.txt")){
-
-                for(int i=0;i<5;i++){
+                int numProfesionales= (int) properties.get("numProfesionales");
+                for(int i=0;i<numProfesionales;i++){
                     double numeroAleatorio= Math.random();
                     if (numeroAleatorio>0.45){
 

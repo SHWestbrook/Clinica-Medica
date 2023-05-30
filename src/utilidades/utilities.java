@@ -27,4 +27,19 @@ public class utilities {
         return letras.substring(num % 23, num % 23 + 1);
     }
 
+    public static void pideHastaQueExista(){
+        //pedir algo hasta que exista
+    //do{
+        //dentro del while llamar a comprobarSiCampoExiste
+    //}while(  );//sigue si es true, tiene que devolver false para salir
+    }
+
+    public static void calcularLiquidacion(){
+        /*calculo la liquidacion a partir de la comision del profesional
+        sumo todos los cobros que ha realizado
+        calculo el porcentaje de esos cobros
+         */
+    }
+
+
 }

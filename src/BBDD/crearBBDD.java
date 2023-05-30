@@ -32,6 +32,8 @@ public class crearBBDD {//clase que crea la base de datos
             insertarArchivos.insertarProfesionales();
             insertarArchivos.insertarTratamientos();
             insertarArchivos.insertarLiquidaciones();
+            insertarArchivos.insertarGCobros();
+            insertarArchivos.insertarFcobros();
 
             System.out.println("se ha creado la base de datos con exito");
         } catch (FileNotFoundException e) {

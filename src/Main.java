@@ -23,6 +23,8 @@ public class Main {
 
         st_.executeUpdate("use clinica");
 
+        crearBBDD.creacionBBDD();
+
 
         Scanner scanner = new Scanner(System.in);
         int opcion;

@@ -37,8 +37,8 @@ public class Clientes {
             }
 
             try(FileWriter fileWriter = new FileWriter("src/BBDD/ficheros/Clientes.txt")){
-
-                for(int i=0;i<3000;i++){
+                int numPacientes= (int) properties.get("numPacientes");
+                for(int i=0;i<numPacientes;i++){
                     String genero;
                     double numeroAleatorio= Math.random();
                     if (numeroAleatorio>0.45){
